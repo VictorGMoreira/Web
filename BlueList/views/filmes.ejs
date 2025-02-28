@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <%- include('partials/head') %>
+
+  <body class="bg-black text-white">
+
+    <!-- Header -->
+    <%- include('partials/header') %>
+
+    <div class="container mx-auto p-4">
+      <h2 class="text-3xl font-bold mt-2">Filmes mais populares</h2>
+      <p class="text-gray-400">Conforme a avaliação dos usuários do IMDb</p>
+
+      <div class="flex mt-4">
+
+        <!-- Lista principal -->
+        <div class="w-3/4">
+          <% movies.forEach((movie, index) => { %>
+            <div class="bg-gray-800 shadow rounded p-4 mb-4">
+              <div class="flex">
+                <a href="/detalhesFilme/<%= movie.id %>">
+                  <img src="<%= movie.image %>" alt="Poster de <%= movie.title %>" class="w-24 h-36 rounded"/>
+                </a>
+                <div class="ml-4">
+                  <div class="flex items-center">
+                    <span class="text-green-500 font-bold"><%= index + 1 %></span>
+                    <span class="text-gray-400 ml-1">(↔)</span>
+                  </div>
+                  <a href="/detalhesFilme/<%= movie.id %>">
+                    <h3 class="text-xl font-bold hover:text-blue-500"><%= movie.title %></h3>
+                  </a>
+                  <p class="text-gray-400"><%= movie.year %> · <%= movie.duration %> · <%= movie.rating %></p>
+                  <div class="flex items-center">
+                    <span class="text-yellow-500"><i class="fas fa-star"></i> <%= movie.score %></span>
+                    <button class="ml-4 text-blue-500">Avaliar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+
+        <!-- Barra lateral -->
+        <div class="w-1/4 pl-4">
+          <div class="bg-gray-800 shadow rounded p-4 mb-4">
+            <h3 class="text-xl font-bold">Você avaliou</h3>
+            <p class="text-gray-400">0/100 (0%)</p>
+            <div class="flex items-center mt-2">
+              <input class="mr-2" type="checkbox" />
+              <span class="text-gray-300">Ocultar títulos que você avaliou</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<%- include('partials/head', { title: title }) %> <!-- Incluindo o head compartilhado -->
+<%- include('partials/header') %>
+
+<div class="bg-black text-white min-h-screen p-4">
+  <h1 class="text-4xl font-bold mb-6">Minha Lista</h1>
+
+  <!-- Exibir Mensagem se a lista estiver vazia -->
+  <% if ((!movies || movies.length === 0) && (!series || series.length === 0)) { %>
+    <div id="emptyMessage" class="text-center text-lg text-gray-400">
+      <p>Você não salvou nada ainda.</p>
+    </div>
+  <% } else { %>
+
+    <!-- Exibir Filmes Salvos -->
+    <% if (movies.length > 0) { %>
+      <h2 class="text-2xl font-semibold mt-6">Filmes Salvos</h2>
+      <div class="flex space-x-4 overflow-x-auto mt-4">
+        <% movies.forEach(function(movie) { %>
+          <div class="w-64">
+            <div class="relative">
+              <img src="<%= movie.image %>" alt="<%= movie.title %>" class="w-full h-auto rounded-lg" />
+              <div class="absolute bottom-2 left-2">
+                <i class="fas fa-play text-white"></i>
+              </div>
+            </div>
+            <div class="mt-2">
+              <p class="font-semibold"><%= movie.title %></p>
+              <p class="text-xs text-gray-400"><%= movie.overview %></p>
+            </div>
+            <!-- Formulário de Remoção do Filme -->
+            <form action="/removerFilme" method="POST" class="mt-2">
+              <input type="hidden" name="movieId" value="<%= movie.movieId %>">
+              <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Remover</button>
+            </form>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <!-- Exibir Séries Salvas -->
+    <% if (series.length > 0) { %>
+      <h2 class="text-2xl font-semibold mt-6">Séries Salvas</h2>
+      <div class="flex space-x-4 overflow-x-auto mt-4">
+        <% series.forEach(function(seriesItem) { %>
+          <div class="w-64">
+            <div class="relative">
+              <img src="<%= seriesItem.image %>" alt="<%= seriesItem.title %>" class="w-full h-auto rounded-lg" />
+              <div class="absolute bottom-2 left-2">
+                <i class="fas fa-play text-white"></i>
+              </div>
+            </div>
+            <div class="mt-2">
+              <p class="font-semibold"><%= seriesItem.title %></p>
+              <p class="text-xs text-gray-400"><%= seriesItem.overview %></p>
+            </div>
+            <!-- Formulário de Remoção da Série -->
+            <form action="/removerSerie" method="POST" class="mt-2">
+              <input type="hidden" name="seriesId" value="<%= seriesItem.seriesId %>">
+              <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Remover</button>
+            </form>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+
+  <% } %>
+</div>
+
+<%- include('partials/footer') %> <!-- Incluindo o footer compartilhado -->

@@ -1,0 +1,22 @@
+<%- include('partials/head') %>
+
+<%- include('partials/header') %>
+
+<div class="container mx-auto p-4 bg-black">
+  <h2 class="text-3xl font-bold mt-2 text-white">Resultados da Pesquisa: <%= query %></h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+    <% if (movies.length === 0) { %>
+      <p class="text-white">Nenhum filme encontrado para a pesquisa: "<%= query %>"</p>
+    <% } else { %>
+      <% movies.forEach((movie) => { %>
+        <div class="movie-item bg-gray-800 rounded-lg p-4">
+          <img src="<%= movie.image %>" alt="<%= movie.title %>" class="w-full h-auto rounded-lg mb-4">
+          <h3 class="text-xl font-semibold text-white"><%= movie.title %></h3>
+          <p class="text-white"><%= movie.releaseYear %> | <%= movie.duration %> | <%= movie.rating %> ⭐</p>
+          <a href="<%= movie.trailerUrl %>" target="_blank" class="text-blue-500 hover:underline">Assistir Trailer</a>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<header class="bg-gray-900 p-4 flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center mb-2 md:mb-0 px-20">
+      <button1 class="ml-2 text-white bg-blue-500 px-4 py-2 rounded">Blue List</button1>
+    </div>
+  
+    <!-- Links de Navegação -->
+    <nav class="flex items-center mb-2 md:mb-0 px-20 justify-center space-x-6">
+      <a href="/" class="<%= currentPage === 'home' ? 'text-blue-500' : 'text-white' %> text-lg py-3 px-6 flex-grow hover:text-blue-500">Início</a>
+      <a href="/filmes" class="<%= currentPage === 'filmes' ? 'text-blue-500' : 'text-white' %> text-lg py-3 px-6 flex-grow hover:text-blue-500">Filmes</a>
+      <a href="/series" class="<%= currentPage === 'series' ? 'text-blue-500' : 'text-white' %> text-lg py-3 px-6 flex-grow hover:text-blue-500">Séries</a>
+      <a href="/minhaLista" class="<%= currentPage === 'minhaLista' ? 'text-blue-500' : 'text-white' %> text-lg py-3 px-6 flex-grow hover:text-blue-500">Minha Lista</a>
+    </nav>
+  
+    <!-- Barra de Pesquisa -->
+    <form action="/pesquisa" method="get" class="flex items-center mb-2 md:mb-0 px-10">
+      <select class="bg-gray-800 text-white p-2 rounded" id="searchCategory" name="category">
+        <option value="all">Tudo</option>
+        <option value="movies">Filmes</option>
+        <option value="series">Séries</option>
+      </select>
+      <input 
+        id="searchInput" 
+        class="ml-2 p-2 rounded bg-gray-800 text-white w-80" 
+        placeholder="Pesquisar na BlueList" 
+        type="text" 
+        name="q" 
+      />
+      <button type="submit" class="ml-2 p-2 bg-blue-500 text-white rounded">Buscar</button>
+    </form>
+  </header>
+  

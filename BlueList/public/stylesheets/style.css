@@ -1,0 +1,98 @@
+/* Estilos gerais do corpo */
+body {
+  font-family: 'Poppins', sans-serif; /* Fonte para o corpo do site */
+  height: 100%; /* Garante que o body ocupe toda a altura da tela */
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo e o footer verticalmente */
+}
+
+/* Links */
+a {
+  color: #0000FF;
+}
+
+a:hover {
+  color: #0000FF;
+}
+
+/* Botões */
+button {
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+  background-color: #0b0b7c;
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: #888;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; /* Garante que o footer fique no final da tela */
+}
+
+footer a {
+  color: #888;
+}
+
+footer a:hover {
+  color: white;
+}
+
+/* Estilos para a imagem principal */
+.main-feature-img {
+  height: 66vh; /* Ajuste a altura da imagem */
+  width: 100%; /* Garantir que ocupe toda a largura do contêiner */
+  object-fit: cover; /* Assegura que a imagem cubra completamente o espaço sem distorção */
+}
+
+/* Container para centralizar o conteúdo */
+.main-feature-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos adicionais para garantir o layout adequado */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+header .main-feature-container {
+  margin-top: 20px;
+}
+
+/* Estilos para os botões */
+button {
+  padding: 10px 20px;
+  background-color: #0000FF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Estilos para o container principal */
+.container {
+  flex-grow: 1; /* Faz com que o conteúdo ocupe o restante do espaço */
+  padding: 8px;
+}
+
+/* Estilo para a lista vazia (Minha Lista) */
+#emptyMessage {
+  text-align: center;
+  font-size: 1.25rem;
+  color: #aaa;
+}

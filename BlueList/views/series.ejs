@@ -1,0 +1,33 @@
+<%- include('partials/head', { title: 'Séries – BlueList' }) %>
+<body class="bg-black text-white">
+  <%- include('partials/header') %>
+
+  <main class="p-4">
+    <!-- Imagem Principal -->
+    <div class="relative w-full h-[50vh] rounded-lg overflow-hidden mb-8">
+      <img src="<%= series[0].image %>" alt="<%= series[0].title %>" class="w-full h-full object-cover">
+      <div class="absolute bottom-4 left-4">
+        <h1 class="text-3xl font-bold"><%= series[0].title %></h1>
+        <p class="mt-2 max-w-xl"><%= series[0].overview %></p>
+      </div>
+    </div>
+
+    <!-- Seção de Séries Populares -->
+    <h2 class="text-2xl font-bold text-blue-500 mb-4">Séries Populares</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <% series.slice(1, 9).forEach((tvShow) => { %>
+        <div class="relative">
+          <a href="/detalhesSerie/<%= tvShow.id %>">
+            <img src="<%= tvShow.poster %>" alt="<%= tvShow.title %>" class="w-full h-auto rounded-lg">
+          </a>
+          <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 p-2 rounded-b-lg">
+            <p class="text-white font-bold"><%= tvShow.title %></p>
+            <p class="text-sm"><%= tvShow.releaseYear %> · ⭐ <%= tvShow.rating %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>

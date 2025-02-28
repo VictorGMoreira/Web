@@ -1,0 +1,93 @@
+<html lang="en">
+  <body class="bg-black text-white">
+    <!-- Inclusão do cabeçalho -->
+    <%- include('partials/head') %>
+    <%- include('partials/header') %>
+
+    <!-- Conteúdo principal -->
+    <main class="p-4">
+      <section class="flex flex-col lg:flex-row">
+        <!-- Imagem Principal -->
+        <div id="mainFeature" class="lg:w-2/3 relative mb-4 lg:mb-0">
+          <!-- Imagem principal com link para a página de detalhes do filme -->
+          <div class="relative w-full h-[50vh]">
+              <img id="mainImage"
+                   class="main-feature-img rounded-lg w-full h-full object-cover"
+                   src="https://image.tmdb.org/t/p/w780/<%= movies[0].image %>"
+                   alt="Main feature image" />
+            </a>
+          </div>
+
+          <!-- Botões de navegação (anterior e próximo) -->
+          <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          <!-- Botão de Play para abrir o trailer -->
+          <div class="absolute bottom-4 left-4">
+            <button id="playButton" class="bg-white text-black p-2 rounded-full" data-trailer="<%= movies[0].trailerUrl %>">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+
+          <!-- Informações principais do filme (título, likes, etc.) -->
+          <div id="mainInfo" class="absolute bottom-4 left-16">
+            <h2 class="text-xl font-bold"><%= movies[0].title %></h2>
+            <p>Assista ao trailer</p>
+            <div class="flex items-center mt-2">
+              <span class="mr-2"><i class="fas fa-thumbs-up"></i> <%= movies[0].likes %></span>
+            </div>
+          </div>
+
+          <!-- Duração do filme -->
+          <div class="absolute bottom-4 right-4">
+            <span><%= movies[0].duration %></span>
+          </div>
+        </div>
+
+        <!-- Seção "A seguir" -->
+        <div class="lg:w-1/3 lg:ml-4">
+          <h3 class="text-lg font-bold mb-4 text-blue-500">A seguir</h3>
+          <div id="nextItems" class="flex flex-col gap-4">
+            <!-- Laço para exibir os próximos filmes -->
+            <% movies.slice(1, 5).forEach((movie) => { %>
+              <div class="flex items-center gap-4 w-full">
+                <!-- Imagem do próximo filme -->
+                <a href="/detalhesFilme/<%= movie.id %>">
+                  <img class="w-24 h-24 object-cover cursor-pointer next-item"
+                       src="https://image.tmdb.org/t/p/w500/<%= movie.image %>" 
+                       data-image="<%= movie.image %>"
+                       data-title="<%= movie.title %>"
+                       data-likes="<%= movie.likes %>"
+                       data-duration="<%= movie.duration %>"
+                       data-trailer="<%= movie.trailerUrl %>"
+                       alt="<%= movie.title %>" />
+                </a>
+                <!-- Informações ao lado da imagem -->
+                <div class="text-white">
+                  <p><strong><%= movie.title %></strong></p>
+                  <p><%= movie.duration %></p>
+                  <p><%= movie.likes %> likes</p>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Inclusão do rodapé -->
+    <%- include('partials/footer') %>
+
+    <!-- Scripts -->
+    <script src="/javascripts/main.js" defer></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </body>
+</html>
